@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import org.footstone.layout.R;
-import org.footstone.tab.adapter.BaseAdapter;
+import org.footstone.tab.adapter.TabContainerAdapter;
 import org.footstone.tab.adapter.TabViewPagerAdapter;
 import org.footstone.tab.base.AbsTab;
 import org.footstone.tab.base.TabHost;
@@ -26,13 +26,11 @@ public class TabContainerView extends RelativeLayout {
 
     private ViewPager mContentViewPager;
 
-
     private int mDivideLineColor;
+
     private int mDivideLineHeight;
 
-
     private TabHost mTabHost;
-
 
     private OnTabSelectedListener mOnTabSelectedListener;
 
@@ -60,10 +58,6 @@ public class TabContainerView extends RelativeLayout {
         init(context, attrs);
     }
 
-    /**
-     * @param context
-     * @param attrs
-     */
     private void init(Context context, AttributeSet attrs) {
         initStyle(context, attrs);
         initTabHost(context);
@@ -80,7 +74,6 @@ public class TabContainerView extends RelativeLayout {
 
         typedArray.recycle();
     }
-
 
     private void initTabHost(Context context) {
         mTabHost = new TabHost(context);
@@ -114,9 +107,9 @@ public class TabContainerView extends RelativeLayout {
 
             @Override
             public void onPageSelected(int position) {
-                mTabHost.changeTabHostStatus(position);
+                mTabHost.onChangeTabHostStatus(position);
 
-                AbsTab selectedTab = mTabHost.getTabForIndex(position);
+                AbsTab selectedTab = mTabHost.getTabByIndex(position);
                 if (mOnTabSelectedListener != null && selectedTab != null) mOnTabSelectedListener.onTabSelected(selectedTab);
             }
 
@@ -128,11 +121,11 @@ public class TabContainerView extends RelativeLayout {
         addView(mContentViewPager);
     }
 
-    public void setAdapter(BaseAdapter baseAdapter) {
+    public void setAdapter(TabContainerAdapter baseAdapter) {
         setAdapter(baseAdapter, 0);
     }
 
-    public void setAdapter(BaseAdapter baseAdapter, int index) {
+    public void setAdapter(TabContainerAdapter baseAdapter, int index) {
         if (baseAdapter == null) return;
 
         mTabHost.addTabs(baseAdapter);
@@ -141,26 +134,9 @@ public class TabContainerView extends RelativeLayout {
         setCurrentItem(index);
     }
 
-
     public void setCurrentItem(int index) {
-        mTabHost.changeTabHostStatus(index);
+        mTabHost.onChangeTabHostStatus(index);
         mContentViewPager.setCurrentItem(index);
-    }
-
-
-    public void setCurrentMessageItem(int index) {
-        setCurrentMessageItem(index, -1);
-    }
-
-
-    public void setCurrentMessageItem(int index, int count) {
-        AbsTab tab = mTabHost.getTabForIndex(index);
-        tab.showMessageTip(true, count);
-    }
-
-
-    public void setTabHostBgColor(int bgColor) {
-        mTabHost.setTabBgColor(bgColor);
     }
 
     public void setOffscreenPageLimit(int limit) {
@@ -170,6 +146,5 @@ public class TabContainerView extends RelativeLayout {
     public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
         this.mOnTabSelectedListener = onTabSelectedListener;
     }
-
 
 }

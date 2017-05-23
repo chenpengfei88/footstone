@@ -59,16 +59,13 @@ public class StatusLayoutManager {
     }
 
 
-
     public void showLoading() {
         rootFrameLayout.showLoading();
     }
 
-
     public void showContent() {
         rootFrameLayout.showContent();
     }
-
 
     public void showEmptyData(int iconImage, String textTip) {
         rootFrameLayout.showEmptyData(iconImage, textTip);
@@ -82,11 +79,9 @@ public class StatusLayoutManager {
         rootFrameLayout.showLayoutEmptyData(objects);
     }
 
-
     public void showNetWorkError() {
         rootFrameLayout.showNetWorkError();
     }
-
 
     public void showError(int iconImage, String textTip) {
         rootFrameLayout.showError(iconImage, textTip);
@@ -99,7 +94,6 @@ public class StatusLayoutManager {
     public void showLayoutError(Object... objects) {
         rootFrameLayout.showLayoutError(objects);
     }
-
 
     public View getRootLayout() {
         return rootFrameLayout;

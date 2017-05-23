@@ -13,9 +13,9 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
 
     public TabViewPagerAdapter(FragmentManager mFragmentManager, Fragment[] fragmentArray) {
         super(mFragmentManager);
+
         this.mFragmentArray = fragmentArray;
     }
-
 
     @Override
     public Fragment getItem(int position) {

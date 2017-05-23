@@ -19,20 +19,15 @@ public abstract class AbsTab {
 
     private int mIndex;
 
-
     private View mRootView;
 
-
-    protected boolean mIsSelected;
-
-
     private OnTabSelectedListener mOnTabSelectedListener;
+
 
     public AbsTab(Context context, int index) {
         mContext = context;
         mIndex = index;
     }
-
 
     protected void inflaterView(final AbsTab tab, @LayoutRes int layoutResId) {
         mRootView = LayoutInflater.from(mContext).inflate(layoutResId, null);
@@ -40,7 +35,6 @@ public abstract class AbsTab {
         rootViewLp.weight = 1;
         mRootView.setLayoutParams(rootViewLp);
 
-        initView(mRootView);
         mRootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,29 +43,23 @@ public abstract class AbsTab {
                 }
             }
         });
-    }
 
+        initView(mRootView);
+    }
 
     public void setOnTabSelectedListener(OnTabSelectedListener onTabSelectedListener) {
         this.mOnTabSelectedListener = onTabSelectedListener;
     }
 
-
-    public View getTabRootView() {
+    public View getRootView() {
         return mRootView;
     }
 
-
-    public int getTabIndex() {
+    public int getIndex() {
         return  mIndex;
     }
 
-
-    public void showMessageTip(boolean show, int count) {};
-
-
-    protected abstract void tabSelected(boolean isSelected);
-
+    protected abstract void onTabSelected(boolean isSelected);
 
     protected abstract void initView(View rootView);
 }

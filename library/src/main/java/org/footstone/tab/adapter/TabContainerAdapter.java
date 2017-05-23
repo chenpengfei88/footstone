@@ -10,23 +10,23 @@ import org.footstone.tab.base.AbsTab;
 /**
  * Created by chenpengfei on 2017/3/22.
  */
-public abstract class BaseAdapter {
+public abstract class TabContainerAdapter {
 
     private Fragment[] mFragmentArray;
+
     private FragmentManager mFragmentManager;
+
     protected Context mContext;
 
-    public BaseAdapter(Context context, Fragment[] fragments, FragmentManager fragmentManager) {
+    public TabContainerAdapter(Context context, Fragment[] fragments, FragmentManager fragmentManager) {
         mContext = context;
         mFragmentArray = fragments;
         mFragmentManager = fragmentManager;
     }
 
-
     public int getCount() {
         return mFragmentArray != null ? mFragmentArray.length : 0;
     }
-
 
     public Fragment[] getFragmentArray() {
         return mFragmentArray;
@@ -35,7 +35,6 @@ public abstract class BaseAdapter {
     public FragmentManager getFragmentManager() {
         return mFragmentManager;
     }
-
 
     public abstract AbsTab getTab(int index);
 

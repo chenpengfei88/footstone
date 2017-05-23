@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 
 import org.footstone.layout.R;
 import org.footstone.tab.OnTabSelectedListener;
-import org.footstone.tab.adapter.BaseAdapter;
+import org.footstone.tab.adapter.TabContainerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ import java.util.List;
 public class TabHost {
 
     private Context mContext;
-    private LinearLayout mRootView;
 
+    private LinearLayout mRootView;
 
     private List<AbsTab> mTabList = new ArrayList<>();
 
@@ -34,7 +34,6 @@ public class TabHost {
         initView();
     }
 
-
     private void initView() {
         mRootView = new LinearLayout(mContext);
         mRootView.setOrientation(LinearLayout.HORIZONTAL);
@@ -45,15 +44,11 @@ public class TabHost {
         mRootView.setLayoutParams(rootViewLp);
     }
 
-    public void setContentViewPager(ViewPager contentViewPager) {
-        this.mContentViewPager = contentViewPager;
-    }
-
     public LinearLayout getRootView() {
         return mRootView;
     }
 
-    public void addTabs(BaseAdapter baseAdapter) {
+    public void addTabs(TabContainerAdapter baseAdapter) {
         int count = baseAdapter.getCount();
         if (count == 0) return;
 
@@ -65,45 +60,40 @@ public class TabHost {
         }
     }
 
-
     private void addTab(AbsTab tab) {
         if (tab == null) return;
 
         mTabList.add(tab);
-        mRootView.addView(tab.getTabRootView());
-        tabAddSelectedListener(tab);
+        mRootView.addView(tab.getRootView());
+
+        setSelectedListenerForTab(tab);
     }
 
-    private void tabAddSelectedListener(AbsTab tab) {
+    private void setSelectedListenerForTab(AbsTab tab) {
         tab.setOnTabSelectedListener(new OnTabSelectedListener() {
             @Override
             public void onTabSelected(AbsTab tab) {
-                mContentViewPager.setCurrentItem(tab.getTabIndex(), false);
+                mContentViewPager.setCurrentItem(tab.getIndex(), false);
             }
         });
     }
 
-
-    public AbsTab getTabForIndex(int index) {
+    public AbsTab getTabByIndex(int index) {
         if (mTabList.size() <= index) {
             return null;
         }
         return mTabList.get(index);
     }
 
-    public void changeTabHostStatus(int index) {
+    public void onChangeTabHostStatus(int index) {
         for (int i = 0, size = mTabList.size(); i < size; i++) {
             AbsTab tab = mTabList.get(i);
-            tab.tabSelected(index == i ? true : false);
+            tab.onTabSelected(index == i ? true : false);
         }
     }
 
-
-    public void setTabBgColor(int bgColor) {
-        for (int i = 0, size = mTabList.size(); i < size; i++) {
-            AbsTab tab = mTabList.get(i);
-            tab.getTabRootView().setBackgroundColor(bgColor);
-        }
+    public void setContentViewPager(ViewPager contentViewPager) {
+        this.mContentViewPager = contentViewPager;
     }
 
 }
