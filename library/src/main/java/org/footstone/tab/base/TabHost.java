@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import org.footstone.layout.R;
 import org.footstone.tab.OnTabSelectedListener;
 import org.footstone.tab.adapter.BaseAdapter;
 
@@ -21,9 +22,7 @@ public class TabHost {
     private Context mContext;
     private LinearLayout mRootView;
 
-    /**
-     * tab集合
-     */
+
     private List<AbsTab> mTabList = new ArrayList<>();
 
     private ViewPager mContentViewPager;
@@ -35,9 +34,7 @@ public class TabHost {
         initView();
     }
 
-    /**
-     *  初始化View
-     */
+
     private void initView() {
         mRootView = new LinearLayout(mContext);
         mRootView.setOrientation(LinearLayout.HORIZONTAL);
@@ -68,10 +65,7 @@ public class TabHost {
         }
     }
 
-    /**
-     *  tabHost 添加tab
-     * @param tab
-     */
+
     private void addTab(AbsTab tab) {
         if (tab == null) return;
 
@@ -89,11 +83,7 @@ public class TabHost {
         });
     }
 
-    /**
-     *  得到index位置的tab
-     * @param index
-     * @return
-     */
+
     public AbsTab getTabForIndex(int index) {
         if (mTabList.size() <= index) {
             return null;
@@ -101,9 +91,6 @@ public class TabHost {
         return mTabList.get(index);
     }
 
-    /**
-     *  改变tabHost状态
-     */
     public void changeTabHostStatus(int index) {
         for (int i = 0, size = mTabList.size(); i < size; i++) {
             AbsTab tab = mTabList.get(i);
@@ -111,10 +98,7 @@ public class TabHost {
         }
     }
 
-    /**
-     *  Tab 设置背景颜色
-     * @param bgColor
-     */
+
     public void setTabBgColor(int bgColor) {
         for (int i = 0, size = mTabList.size(); i < size; i++) {
             AbsTab tab = mTabList.get(i);

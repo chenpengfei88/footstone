@@ -22,16 +22,12 @@ public abstract class BaseAdapter {
         mFragmentManager = fragmentManager;
     }
 
-    /**
-     *  tab数量
-     */
+
     public int getCount() {
         return mFragmentArray != null ? mFragmentArray.length : 0;
     }
 
-    /**
-     * fragment 数组
-     */
+
     public Fragment[] getFragmentArray() {
         return mFragmentArray;
     }
@@ -40,10 +36,7 @@ public abstract class BaseAdapter {
         return mFragmentManager;
     }
 
-    /**
-     *  得到tab
-     * @return
-     */
+
     public abstract AbsTab getTab(int index);
 
 }

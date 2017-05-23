@@ -18,39 +18,25 @@ import android.widget.TextView;
  */
 public class RootFrameLayout extends FrameLayout {
 
-    /**
-     *  loading 加载id
-     */
+
     public static final int LAYOUT_LOADING_ID = 1;
 
-    /**
-     *  内容id
-     */
+
     public static final int LAYOUT_CONTENT_ID = 2;
 
-    /**
-     *  异常id
-     */
+
     public static final int LAYOUT_ERROR_ID = 3;
 
-    /**
-     *  网络异常id
-     */
+
     public static final int LAYOUT_NETWORK_ERROR_ID = 4;
 
-    /**
-     *  空数据id
-     */
+
     public static final int LAYOUT_EMPTYDATA_ID = 5;
 
-    /**
-     *  存放布局集合
-     */
+
     private SparseArray<View> layoutSparseArray = new SparseArray();
 
-    /**
-     *  布局管理器
-     */
+
     private StatusLayoutManager mStatusLayoutManager;
 
 
@@ -93,25 +79,19 @@ public class RootFrameLayout extends FrameLayout {
         addView(resView);
     }
 
-    /**
-     *  显示loading
-     */
+
     public void showLoading() {
         if (layoutSparseArray.get(LAYOUT_LOADING_ID) != null)
             showHideViewById(LAYOUT_LOADING_ID);
     }
 
-    /**
-     *  显示内容
-     */
+
     public void showContent() {
         if (layoutSparseArray.get(LAYOUT_CONTENT_ID) != null)
             showHideViewById(LAYOUT_CONTENT_ID);
     }
 
-    /**
-     *  显示空数据
-     */
+
     public void showEmptyData(int iconImage, String textTip) {
         if (inflateLayout(LAYOUT_EMPTYDATA_ID)) {
             showHideViewById(LAYOUT_EMPTYDATA_ID);
@@ -143,17 +123,13 @@ public class RootFrameLayout extends FrameLayout {
         }
     }
 
-    /**
-     *  显示网络异常
-     */
+
     public void showNetWorkError() {
         if (inflateLayout(LAYOUT_NETWORK_ERROR_ID))
             showHideViewById(LAYOUT_NETWORK_ERROR_ID);
     }
 
-    /**
-     *  显示异常
-     */
+
     public void showError(int iconImage, String textTip) {
         if (inflateLayout(LAYOUT_ERROR_ID)) {
             showHideViewById(LAYOUT_ERROR_ID);
@@ -185,15 +161,11 @@ public class RootFrameLayout extends FrameLayout {
         }
     }
 
-    /**
-     *  根据ID显示隐藏布局
-     * @param id
-     */
+
     private void showHideViewById(int id) {
         for (int i = 0; i < layoutSparseArray.size(); i++) {
             int key = layoutSparseArray.keyAt(i);
             View valueView = layoutSparseArray.valueAt(i);
-            //显示该view
             if(key == id) {
                 valueView.setVisibility(View.VISIBLE);
                 if(mStatusLayoutManager.onShowHideViewListener != null) mStatusLayoutManager.onShowHideViewListener.onShowView(valueView, key);
@@ -246,9 +218,7 @@ public class RootFrameLayout extends FrameLayout {
         return isShow;
     }
 
-    /**
-     *  重试加载
-     */
+
     private void retryLoad(View view, int id) {
         View retryView = view.findViewById(mStatusLayoutManager.retryViewId != 0 ? mStatusLayoutManager.retryViewId : id);
         if (retryView == null || mStatusLayoutManager.onRetryListener == null) return;

@@ -59,23 +59,17 @@ public class StatusLayoutManager {
     }
 
 
-    /**
-     *  显示loading
-     */
+
     public void showLoading() {
         rootFrameLayout.showLoading();
     }
 
-    /**
-     *  显示内容
-     */
+
     public void showContent() {
         rootFrameLayout.showContent();
     }
 
-    /**
-     *  显示空数据
-     */
+
     public void showEmptyData(int iconImage, String textTip) {
         rootFrameLayout.showEmptyData(iconImage, textTip);
     }
@@ -88,16 +82,12 @@ public class StatusLayoutManager {
         rootFrameLayout.showLayoutEmptyData(objects);
     }
 
-    /**
-     *  显示网络异常
-     */
+
     public void showNetWorkError() {
         rootFrameLayout.showNetWorkError();
     }
 
-    /**
-     *  显示异常
-     */
+
     public void showError(int iconImage, String textTip) {
         rootFrameLayout.showError(iconImage, textTip);
     }
@@ -110,9 +100,7 @@ public class StatusLayoutManager {
         rootFrameLayout.showLayoutError(objects);
     }
 
-    /**
-     *  得到root 布局
-     */
+
     public View getRootLayout() {
         return rootFrameLayout;
     }

@@ -23,25 +23,17 @@ import org.footstone.tab.base.TabHost;
  */
 public class TabContainerView extends RelativeLayout {
 
-    /**
-     *  中间ViewPager
-     */
+
     private ViewPager mContentViewPager;
 
-    /**
-     *  分割线
-     */
+
     private int mDivideLineColor;
     private int mDivideLineHeight;
 
-    /**
-     *  底部TabLayout
-     */
+
     private TabHost mTabHost;
 
-    /**
-     *  选中监听
-     */
+
     private OnTabSelectedListener mOnTabSelectedListener;
 
 
@@ -69,7 +61,6 @@ public class TabContainerView extends RelativeLayout {
     }
 
     /**
-     *  初始化UI
      * @param context
      * @param attrs
      */
@@ -150,35 +141,24 @@ public class TabContainerView extends RelativeLayout {
         setCurrentItem(index);
     }
 
-    /**
-     *  设置当前选中的tab
-     * @param index
-     */
+
     public void setCurrentItem(int index) {
         mTabHost.changeTabHostStatus(index);
         mContentViewPager.setCurrentItem(index);
     }
 
-    /**
-     *  显示消息提示
-     * @param index
-     */
+
     public void setCurrentMessageItem(int index) {
         setCurrentMessageItem(index, -1);
     }
 
-    /**
-     *  设置消息提示数量
-     * @param index
-     */
+
     public void setCurrentMessageItem(int index, int count) {
         AbsTab tab = mTabHost.getTabForIndex(index);
         tab.showMessageTip(true, count);
     }
 
-    /**
-     *  设置TabHost背景颜色
-     */
+
     public void setTabHostBgColor(int bgColor) {
         mTabHost.setTabBgColor(bgColor);
     }
