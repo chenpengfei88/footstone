@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <declare-styleable name="TabContainerViewStyle">
+        <attr name="divideLineColor" format="color" />
+        <attr name="divideLineHeight" format="integer" />
+    </declare-styleable>
+</resources>
